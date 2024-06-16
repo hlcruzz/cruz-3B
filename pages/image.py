@@ -1,4 +1,3 @@
-import pickle
 import torch
 from img2vec_pytorch import Img2Vec
 import streamlit as st
@@ -25,6 +24,7 @@ model = load_model()
 
 # Initialize Img2Vec with the loaded model
 try:
+    # Assuming model.p contains a PyTorch model serialized with pickle
     img2vec = Img2Vec(model=model)
 except Exception as e:
     st.error(f"Error initializing Img2Vec with the loaded model: {e}")
@@ -79,5 +79,3 @@ else:
     st.write("## Welcome!")
     st.write("Upload an image to get started.")
     st.write("This app is developed by Harold Cruz.")
-
-
