@@ -1,5 +1,6 @@
 import pickle
-
+import torch
+from torchvision import models, datasets, transforms
 from PIL import Image
 from io import BytesIO
 from img2vec_pytorch import Img2Vec
