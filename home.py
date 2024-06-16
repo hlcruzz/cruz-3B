@@ -6,7 +6,7 @@ show_pages(
     [   
         Page("home.py", "ITEQMT Machine Learning Application Portfolio", "💻"),
         Section("Machine Learning UI App", "🧙‍♂️"),
-        Page("pages/aboutme.py", "ABOUT HAROLD", "1️⃣", in_section=True),
+        Page("pages/aboutme.py", "ABOUT HAROLD CRUZ", "1️⃣", in_section=True),
         Page("pages/discription.py", "APP DESCRIPTION", "2️⃣", in_section=True),
         Page("pages/learnings.py", "WHAT I HAVE LEARN?", "3️⃣", in_section=True),
     
