@@ -1,5 +1,5 @@
-
 import streamlit as st
+st.code(""" import streamlit as st
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
@@ -36,4 +36,5 @@ if st.button("Analyze"):
         st.write(f"Sentence: {sentence}")
         st.write(f"Emotion: {emotion}")
     else:
-        st.warning("Please enter a sentence.")
+        st.warning("Please enter a sentence.") """")
+
