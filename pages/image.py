@@ -6,7 +6,6 @@ from PIL import Image
 from io import BytesIO
 import pickle
 from sklearn.model_selection import GridSearchCV
-from sklearn.svm import SVC
 
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Image Classification for Fruits")
@@ -27,14 +26,10 @@ def load_model():
 # Function to extract the underlying model
 def extract_model(model):
     if isinstance(model, GridSearchCV):
-        # Extract best estimator if available
-        if hasattr(model, 'best_estimator_'):
-            return model.best_estimator_
-        else:
-            st.warning("Loaded GridSearchCV object does not have 'best_estimator_' attribute. Using the GridSearchCV object itself.")
-            return model
+        # Use the GridSearchCV object directly if best_estimator_ is not available
+        return model
     else:
-        # If not GridSearchCV, return as-is
+        # If not a GridSearchCV object, return as-is
         return model
 
 # Load the model
@@ -46,8 +41,11 @@ svc_model = extract_model(model)
 # Initialize Img2Vec with the SVC model
 try:
     img2vec = Img2Vec(model=svc_model)
+except AttributeError as ae:
+    st.error(f"Error initializing Img2Vec with the loaded model: {ae}")
+    st.stop()
 except Exception as e:
-    st.error(f"Error initializing Img2Vec with the loaded model: {e}")
+    st.error(f"Unexpected error initializing Img2Vec with the loaded model: {e}")
     st.stop()
 
 # Streamlit Web App Interface
@@ -76,7 +74,10 @@ def predict_image(upload):
         features = img2vec.get_vec(image)
         # Assuming img2vec.get_vec() returns features as needed
         # Perform prediction with svc_model
-        pred = svc_model.predict([features])
+        if isinstance(svc_model, GridSearchCV):
+            pred = svc_model.predict([features])
+        else:
+            pred = svc_model.predict(features.reshape(1, -1))  # Adjust as per the model's requirements
         st.sidebar.header(pred[0])
     except Exception as e:
         st.error(f"Error during prediction: {e}")
@@ -94,6 +95,9 @@ if my_upload is not None:
     else:
         if svc_model is not None:
             predict_image(upload=my_upload)
+        else:
+            st.sidebar.write("### Predicted Category :wrench:")
+            st.sidebar.write("Please wait while the model is loading or there's an issue with the model.")
 else:
     st.write("## Welcome!")
     st.write("Upload an image to get started.")
