@@ -1,9 +1,7 @@
-img2vec_pytorch
-st-pages
+img2vec-pytorch
+st-pages  # Replace with the correct package name if different
 nltk
 streamlit
 scikit-learn==1.4.2
 torch
-torchvision>=0.10.0,<0.11.0  # Adjust version range as per compatibility
-# other dependencies
-
+torchvision>=0.10.0,<0.11.0
