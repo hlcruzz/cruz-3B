@@ -27,7 +27,7 @@ def show_app_description():
     st.markdown("---")
 
     st.info("Explore each application to see demos and learn more about the underlying technology.")
-    st.info("Connect with me on [LinkedIn](https://www.linkedin.com) for collaborations and discussions.")
+    st.info("Connect with me on [Facebook](https://web.facebook.com/harold.gravela.cruz/) for collaborations and discussions.")
 
 # Main function to run the app
 def main():
