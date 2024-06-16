@@ -71,13 +71,17 @@ st.markdown("""
 ##### 👨‍🔧 More Content
 
    HISTORY, PURPOSE AND USAGE
-        Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. 
-        The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. It usually begins with:
-        “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”
-        The purpose of lorem ipsum is to create a natural looking block of text (sentence, paragraph, page, etc.) that doesn't distract from the layout. 
-        A practice not without controversy, laying out pages with meaningless filler text can be very useful when the focus is meant to be on design, not content.
-        The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer sheets, and again during the 90s as desktop publishers bundled the text with their software. 
-        Today it's seen all around the web; on templates, websites, and stock designs. Use our generator to get your own, or read on for the authoritative history of lorem ipsum.
+      In my Machine Learning Application Portfolio, I present a collection of innovative tools designed to address diverse challenges using advanced machine learning techniques. The Fruits Classification Model was developed to automate the identification of fruits in images, leveraging cutting-edge image processing and classification algorithms. This application not only enhances efficiency in fruit categorization but also supports agricultural research, inventory management, and consumer applications by providing accurate and automated fruit recognition capabilities.
+
+The Sentiment Analysis Tool emerged from the increasing need for automated sentiment analysis in textual data. Built upon natural language processing and machine learning advancements, this tool analyzes the emotional content of text inputs to extract insights into customer feedback, social media sentiment, and communication patterns. Its purpose is to streamline sentiment analysis processes across various domains, aiding decision-making and enhancing understanding of textual data dynamics.
+
+The Crop Recommendation Predictor serves as a crucial tool for farmers seeking optimal crop selection based on soil nutrient levels. Developed with insights from precision agriculture and sustainable farming practices, this application recommends suitable crops by analyzing inputs of nitrogen, phosphorus, and potassium levels. It supports farmers in maximizing crop yield and resource management, thereby promoting sustainable agricultural practices and improved productivity.
+
+For creative applications, the Image Style Transfer application leverages neural style transfer techniques to blend artistic styles between images. Inspired by advancements in computer vision and deep learning, this tool enables users to create visually compelling compositions by transferring the style of one image onto the content of another. It empowers artists, photographers, and digital creators to explore new dimensions of creativity in visual media and digital artistry.
+
+Lastly, the Disease Diagnosis from Medical Images application revolutionizes medical diagnostics by automating disease detection and classification from medical imaging data. Built upon convolutional neural networks (CNNs) and annotated medical datasets, this tool supports healthcare professionals in making informed decisions by accurately identifying diseases from X-rays and MRIs. It aims to enhance diagnostic accuracy, expedite treatment planning, and improve patient outcomes through advanced machine learning technologies.
+
+In conclusion, each application in my portfolio represents a blend of innovation, practicality, and impact across various domains. From agriculture and healthcare to digital art and sentiment analysis, these tools showcase the transformative potential of machine learning in solving real-world challenges. By leveraging state-of-the-art technologies and research, these applications contribute to smarter decision-making, enhanced automation, and creative expression, driving progress in their respective fields and shaping a more connected and intelligent future.
 
 ### 🔎 Overview""", unsafe_allow_html=True)
 
