@@ -3,5 +3,5 @@ st-pages  # Replace with the correct package name if different
 nltk
 streamlit
 scikit-learn==1.4.2
-torch
-torchvision>=0.10.0,<0.11.0
+torch==1.10.0+cpu  # Adjust version as needed, ensure it matches your PyTorch installation
+torchvision==0.11.0  # Adjust version as needed, ensure compatibility with torch
