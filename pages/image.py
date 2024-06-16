@@ -1,8 +1,8 @@
 import pickle
 import torch
-from torchvision import models
 from img2vec_pytorch import Img2Vec
 import streamlit as st
+import pickle
 
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Image Classification for Fruits")
@@ -20,30 +20,17 @@ def load_model():
         st.error(f"Error loading the model: {e}")
         return None
 
-# Function to check if the model is fitted
-def is_model_fitted(model):
-    try:
-        check_is_fitted(model)
-        return True
-    except NotFittedError:
-        return False
-
 # Load the model
 model = load_model()
 
-# Initialize Img2Vec with pretrained ResNet18
+# Initialize Img2Vec with the loaded model
 try:
-    # Load pretrained ResNet18 from TorchVision
-    resnet18 = models.resnet18(pretrained=True)
-    
-    # Initialize Img2Vec with ResNet18
-    img2vec = Img2Vec(model=resnet18)
-    
+    img2vec = Img2Vec(model=model)
 except Exception as e:
-    st.error(f"Error initializing Img2Vec with ResNet18: {e}")
+    st.error(f"Error initializing Img2Vec with the loaded model: {e}")
     st.stop()
 
-# Streamlit Web App Interface
+# Continue with the rest of your Streamlit code
 st.write("## Fruits Classification Model")
 st.write("Upload an image of a fruit, and we'll predict its category based on our trained model!")
 st.sidebar.write("## Upload and Download")
@@ -92,4 +79,5 @@ else:
     st.write("## Welcome!")
     st.write("Upload an image to get started.")
     st.write("This app is developed by Harold Cruz.")
+
 
