@@ -25,7 +25,7 @@ classifier = MultinomialNB()
 classifier.fit(X_train, y_train)
 
 
-st.title("Sentiment Analysis")
+st.title("Sentiment Analysis 😊")
 
 sentence = st.text_input("Enter a sentence for sentiment analysis:")
 
