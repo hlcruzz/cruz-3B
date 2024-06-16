@@ -1,12 +1,8 @@
 import pickle
 import torch
-from torchvision import models, transforms
-from PIL import Image
-from io import BytesIO
+from torchvision import models
 from img2vec_pytorch import Img2Vec
 import streamlit as st
-from sklearn.exceptions import NotFittedError
-from sklearn.utils.validation import check_is_fitted
 
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Image Classification for Fruits")
@@ -35,8 +31,17 @@ def is_model_fitted(model):
 # Load the model
 model = load_model()
 
-# Initialize Img2Vec
-img2vec = Img2Vec()
+# Initialize Img2Vec with pretrained ResNet18
+try:
+    # Load pretrained ResNet18 from TorchVision
+    resnet18 = models.resnet18(pretrained=True)
+    
+    # Initialize Img2Vec with ResNet18
+    img2vec = Img2Vec(model=resnet18)
+    
+except Exception as e:
+    st.error(f"Error initializing Img2Vec with ResNet18: {e}")
+    st.stop()
 
 # Streamlit Web App Interface
 st.write("## Fruits Classification Model")
@@ -87,3 +92,4 @@ else:
     st.write("## Welcome!")
     st.write("Upload an image to get started.")
     st.write("This app is developed by Harold Cruz.")
+
