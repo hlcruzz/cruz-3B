@@ -30,7 +30,7 @@ def show_learnings():
 
     st.markdown("---")
 
-    st.info("These projects have equipped me with practical skills in machine learning, data preprocessing, model evaluation, and domain-specific knowledge. Connect with me on [LinkedIn](https://www.linkedin.com) to discuss more about these projects!")
+    st.info("These projects have equipped me with practical skills in machine learning, data preprocessing, model evaluation, and domain-specific knowledge. Connect with me on [Facebook](https://web.facebook.com/harold.gravela.cruz/) to discuss more about these projects!")
 
 # Main function to run the app
 def main():
