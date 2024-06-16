@@ -1,12 +1,17 @@
 import torch
+from torchvision import transforms
 from img2vec_pytorch import Img2Vec
 import streamlit as st
+from PIL import Image
+from io import BytesIO
 import pickle
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
 
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Image Classification for Fruits")
 
-# Function to load the model
+# Function to load the GridSearchCV model
 def load_model():
     try:
         with open('pages/model.p', 'rb') as f:
@@ -19,18 +24,33 @@ def load_model():
         st.error(f"Error loading the model: {e}")
         return None
 
-# Load the model
+# Function to extract the best estimator from GridSearchCV
+def extract_best_estimator(model):
+    if isinstance(model, GridSearchCV):
+        best_estimator = model.best_estimator_
+        if isinstance(best_estimator, SVC):
+            return best_estimator
+        else:
+            st.error("Best estimator is not an instance of SVC. Check the content of model.p.")
+            return None
+    else:
+        st.error("Loaded model is not a GridSearchCV object. Check the content of model.p.")
+        return None
+
+# Load the GridSearchCV model
 model = load_model()
 
-# Initialize Img2Vec with the loaded model
+# Extract the best estimator (assuming it's an SVC model)
+svc_model = extract_best_estimator(model)
+
+# Initialize Img2Vec with the SVC model
 try:
-    # Assuming model.p contains a PyTorch model serialized with pickle
-    img2vec = Img2Vec(model=model)
+    img2vec = Img2Vec(model=svc_model)
 except Exception as e:
-    st.error(f"Error initializing Img2Vec with the loaded model: {e}")
+    st.error(f"Error initializing Img2Vec with the loaded SVC model: {e}")
     st.stop()
 
-# Continue with the rest of your Streamlit code
+# Streamlit Web App Interface
 st.write("## Fruits Classification Model")
 st.write("Upload an image of a fruit, and we'll predict its category based on our trained model!")
 st.sidebar.write("## Upload and Download")
@@ -52,13 +72,12 @@ def predict_image(upload):
     st.sidebar.image(image, use_column_width=True)
 
     st.sidebar.write("### Predicted Category :wrench:")
-    features = img2vec.get_vec(image)
     try:
-        if model is not None and is_model_fitted(model):
-            pred = model.predict([features])
-            st.sidebar.header(pred[0])
-        else:
-            st.error("The model is not fitted. Please fit the model before using it for predictions.")
+        features = img2vec.get_vec(image)
+        # Assuming img2vec.get_vec() returns features as needed
+        # Perform prediction with svc_model
+        pred = svc_model.predict([features])
+        st.sidebar.header(pred[0])
     except Exception as e:
         st.error(f"Error during prediction: {e}")
 
@@ -73,7 +92,7 @@ if my_upload is not None:
     if my_upload.size > MAX_FILE_SIZE:
         st.error("The uploaded file is too large. Please upload an image smaller than 5MB.")
     else:
-        if model is not None:
+        if svc_model is not None:
             predict_image(upload=my_upload)
 else:
     st.write("## Welcome!")
