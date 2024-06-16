@@ -1,4 +1,4 @@
-import streamlit as st
+st.code(""" import streamlit as st
 import pandas as pd
 import pickle
 
@@ -30,3 +30,4 @@ else:
 
 st.text("The crop suitable for this NPK level:")
 st.text(crop_name)
+ """")
