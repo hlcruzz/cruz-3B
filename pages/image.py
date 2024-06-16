@@ -1,6 +1,6 @@
 import pickle
 import torch
-from torchvision import models, datasets, transforms
+from torchvision import models, transforms
 from PIL import Image
 from io import BytesIO
 from img2vec_pytorch import Img2Vec
@@ -46,25 +46,25 @@ st.sidebar.write("## Upload and Download")
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
 # Function to convert the image to bytes
-@st.cache_data
-def convert_image(img):
+@st.cache
+def convert_image_to_bytes(img):
     buf = BytesIO()
     img.save(buf, format="JPEG")
     byte_im = buf.getvalue()
     return byte_im
 
 # Function to process and predict the uploaded image
-def fix_image(upload):
+def predict_image(upload):
     image = Image.open(upload)
-    col1.write("### Image to be Predicted :camera:")
-    col1.image(image, use_column_width=True)
+    st.sidebar.write("### Image to be Predicted :camera:")
+    st.sidebar.image(image, use_column_width=True)
 
-    col2.write("### Predicted Category :wrench:")
+    st.sidebar.write("### Predicted Category :wrench:")
     features = img2vec.get_vec(image)
     try:
         if model is not None and is_model_fitted(model):
             pred = model.predict([features])
-            col2.header(pred[0])
+            st.sidebar.header(pred[0])
         else:
             st.error("The model is not fitted. Please fit the model before using it for predictions.")
     except Exception as e:
@@ -82,7 +82,7 @@ if my_upload is not None:
         st.error("The uploaded file is too large. Please upload an image smaller than 5MB.")
     else:
         if model is not None:
-            fix_image(upload=my_upload)
+            predict_image(upload=my_upload)
 else:
     st.write("## Welcome!")
     st.write("Upload an image to get started.")
