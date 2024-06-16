@@ -13,7 +13,7 @@ st.set_page_config(layout="wide", page_title="Image Classification for Fruits")
 # Function to load the model
 def load_model():
     try:
-        with open('model.p', 'rb') as f:
+        with open('pages/model.p', 'rb') as f:
             model = pickle.load(f)
         return model
     except FileNotFoundError:
