@@ -28,12 +28,12 @@ show_pages(
 
 hide_pages(["Thank you"])
 
-st.markdown("### 👨‍🔧 ML Learning by [koalatech](https://github.com/koalatech)")
+st.markdown("### 👨‍🔧 ML Learning by [Harold Cruz](https://github.com/hlcruzz/cruz-3B)")
 
 st.image("./p1.jpg")
 st.markdown("""<a href="/photographer/thinkstock-83786">Thinkstock</a> on <a href="/">Freeimages.com</a>""",unsafe_allow_html=True,)
 
-st.info("Visit the project [Github](https://github.com/koalatech/streamlit_web_app)")
+st.info("Visit the project [Github](https://github.com/hlcruzz/cruz-3B)")
 st.info("👨‍🔧 Please take note when on streamlit.app the [Image Classification] pages are not working due to Memory Limitation of 'Free Tier' hosting of Streamlit") 
 st.markdown("---")
 
@@ -63,9 +63,9 @@ st.markdown("""
 
 ##### 👨‍👦‍👦 Subheader Title
 
-* Bullet 1
-* Bullet 2
-* Bullet 3
+* Crop Prediction
+* Sentiment Analyzer    
+* Image Classification
 
 
 ##### 👨‍🔧 More Content
