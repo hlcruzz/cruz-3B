@@ -1,8 +1,7 @@
 import pickle
-import os
-import random
-from io import BytesIO
+
 from PIL import Image
+from io import BytesIO
 from img2vec_pytorch import Img2Vec
 import streamlit as st
 from sklearn.exceptions import NotFittedError
@@ -32,11 +31,11 @@ def is_model_fitted(model):
     except NotFittedError:
         return False
 
-# Initialize Img2Vec
-img2vec = Img2Vec()
-
 # Load the model
 model = load_model()
+
+# Initialize Img2Vec
+img2vec = Img2Vec()
 
 # Streamlit Web App Interface
 st.write("## Fruits Classification Model")
@@ -46,7 +45,7 @@ st.sidebar.write("## Upload and Download")
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
 # Function to convert the image to bytes
-@st.cache
+@st.cache_data
 def convert_image(img):
     buf = BytesIO()
     img.save(buf, format="JPEG")
