@@ -7,7 +7,7 @@ def show_about_me():
     """)
     st.markdown("---")
 
-    st.image("./about_me_image.jpg")
+    st.image("about_me_image.jpg")
     st.markdown("""
     Photo by [Your Name](https://example.com) on [Unsplash](https://unsplash.com)
     """)
