@@ -12,7 +12,7 @@ except FileNotFoundError:
 except Exception as e:
     st.error(f"Error loading model: {str(e)}")
 
-st.title("Crop Recommendation Predictor :smile:")
+st.title("Crop Recommendation Predictor 🌾")
 st.subheader("Enter a set of NPK levels to determine what crop best fits:")
 
 n_input = st.slider("Nitrogen: ", 0, 500)
