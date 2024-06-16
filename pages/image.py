@@ -11,7 +11,7 @@ from sklearn.svm import SVC
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Image Classification for Fruits")
 
-# Function to load the GridSearchCV model
+# Function to load the model
 def load_model():
     try:
         with open('pages/model.p', 'rb') as f:
@@ -24,30 +24,30 @@ def load_model():
         st.error(f"Error loading the model: {e}")
         return None
 
-# Function to extract the best estimator from GridSearchCV
-def extract_best_estimator(model):
+# Function to extract the underlying model
+def extract_model(model):
     if isinstance(model, GridSearchCV):
-        best_estimator = model.best_estimator_
-        if isinstance(best_estimator, SVC):
-            return best_estimator
+        # Extract best estimator if available
+        if hasattr(model, 'best_estimator_'):
+            return model.best_estimator_
         else:
-            st.error("Best estimator is not an instance of SVC. Check the content of model.p.")
-            return None
+            st.warning("Loaded GridSearchCV object does not have 'best_estimator_' attribute. Using the GridSearchCV object itself.")
+            return model
     else:
-        st.error("Loaded model is not a GridSearchCV object. Check the content of model.p.")
-        return None
+        # If not GridSearchCV, return as-is
+        return model
 
-# Load the GridSearchCV model
+# Load the model
 model = load_model()
 
-# Extract the best estimator (assuming it's an SVC model)
-svc_model = extract_best_estimator(model)
+# Extract the underlying model
+svc_model = extract_model(model)
 
 # Initialize Img2Vec with the SVC model
 try:
     img2vec = Img2Vec(model=svc_model)
 except Exception as e:
-    st.error(f"Error initializing Img2Vec with the loaded SVC model: {e}")
+    st.error(f"Error initializing Img2Vec with the loaded model: {e}")
     st.stop()
 
 # Streamlit Web App Interface
