@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Load the trained Naive Bayes classifier from the saved file
-filename = 'crop_recom_model.sav'
+filename = '/crop_recom_model.sav'
 
 try:
     loaded_model = pickle.load(open(filename, 'rb'))
